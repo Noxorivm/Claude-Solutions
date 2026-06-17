@@ -37,14 +37,32 @@ la plataforma base se conserva más abajo («Roadmap heredado de Cubiletica»).
   `quizzes` vacíos, logros genéricos), admin desde env, idempotente. E2E en
   verde (smoke; full-flow en `skip` con TODO hasta que haya contenido). Stubs
   de docs 01/02; resto con el nombre actualizado. Features y esquema intactos.
-- [ ] **CS-T2 Temario y currículo:** redacción del temario de Claude Solutions
-  (cursos y lecciones de N0–N5) y poblado del seed/admin.
-- [ ] **CS-T3 Remapeo de conceptos:** adaptar el dominio (técnicas, práctica,
-  microcopy, nombres de rango de jugador) del mundo de la magia al de Claude.
-- [ ] **CS-T4 Simulador:** feature nueva específica de Claude Solutions.
+- [x] **CS-T2 Diseño del currículo (docs/02) (17/06/2026):** currículo de Claude
+  Solutions diseñado y escrito en docs/02 (antes un stub) — principios
+  pedagógicos, **principio de VOZ** gobernante, anatomía de lección, tipos
+  (`article`/`exercise`/`quiz`/`milestone` + `simulation` previsto), los 6
+  niveles con foco e hito de salida, **N0–N1 a nivel de lección** (cursos
+  aprobados: N0 = 0.1 Bienvenido a Claude · 0.2 Tu primera conversación útil;
+  N1 = 1.1 El arte de pedir · 1.2 Trabajar con tus materiales · 1.3 Hacer tuyo a
+  Claude) y **N2–N5 a nivel de módulo**, catálogo de ~40 habilidades y nota de
+  derechos/actualización. Todo **anclado en doc oficial vigente** y citado
+  (docs.claude.com, support.claude.com, anthropic.com, code.claude.com). Solo
+  docs; sin tocar seed ni código.
+- [ ] **CS-T3 Seed del currículo (estructura):** volcar al seed los 6 niveles, los
+  cursos/módulos/lecciones de N0–N1 y el catálogo de habilidades de docs/02;
+  cuerpos de lección como `[REDACTAR]`; idempotente (reactiva el full-flow E2E
+  cuando exista al menos un curso publicado).
+- [ ] **CS-T4 Redacción de lecciones N0–N1:** escribir los cuerpos con la **voz**
+  de docs/02 §2, anclados y citados, vía el pipeline `content/` heredado.
+- [ ] **CS-T5 Remapeo de conceptos en la app:** adaptar el dominio y el microcopy
+  heredados de magia (técnicas → habilidades, "práctica", nombres de rango de
+  jugador, taglines de empty-state) al de Claude, **sin** tocar el esquema.
+- [ ] **CS-T6 Simulador:** diseñar y construir el tipo de lección `simulation`
+  (feature nueva específica de Claude Solutions).
 
-> El detalle por tarea lo genera el Project con la plantilla de prompt de más
-> abajo. El alcance de CS-T2+ es orientativo.
+> Orden orientativo: CS-T3 y CS-T4 pueblan el contenido; CS-T5 puede ir en
+> paralelo; CS-T6 es la feature nueva. El detalle por tarea lo genera el Project
+> con la plantilla de prompt de más abajo.
 
 ## Roadmap heredado de Cubiletica (plataforma base)
 
