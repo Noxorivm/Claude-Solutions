@@ -59,8 +59,17 @@ la plataforma base se conserva más abajo («Roadmap heredado de Cubiletica»).
   arranca (student-facing vacío, estructura en el admin); E2E verde (smoke +
   full-flow skip). Sin tocar esquema; sin lecciones `simulation` (reservado a
   CS-T6).
-- [ ] **CS-T4 Redacción de lecciones N0–N1:** escribir los cuerpos con la **voz**
-  de docs/02 §2, anclados y citados, vía el pipeline `content/` heredado.
+- [ ] **CS-T4 Redacción de lecciones N0–N1 (curso a curso):** los cuerpos con la
+  **voz** de docs/02 §2, anclados y citados, vía el pipeline `content/` heredado.
+  - [x] **Curso 0.1 «Bienvenido a Claude» (17/06/2026):** las 14 lecciones (M1 Qué
+    es Claude · M2 Hablar con Claude · M3 Honestidad y límites), en la voz cercana,
+    con honestidad sobre los límites desde la primera lección, ancladas en doc
+    oficial y citadas; checklists reales en las 3 prácticas + el hito y un quiz de
+    5 preguntas en el seed. En draft. Verificado sin Docker (lint/typecheck/test +
+    dry-run del parser de `content:apply` en los 14 .md); `content:apply`/`db:seed`
+    idempotentes y el render en el admin quedan pendientes de Docker (los cubre el
+    CI al pushear).
+  - [ ] Cursos 0.2, 1.1, 1.2 y 1.3 (resto de N0–N1).
 - [ ] **CS-T5 Remapeo de conceptos en la app:** adaptar el dominio y el microcopy
   heredados de magia (técnicas → habilidades, "práctica", nombres de rango de
   jugador, taglines de empty-state) al de Claude, **sin** tocar el esquema.

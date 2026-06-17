@@ -124,9 +124,30 @@ export const curriculum: SeedLevel[] = [
             lessons: [
               { slug: "0-1-la-conversacion-como-interfaz", title: "La conversación como interfaz", type: "article", durationMin: A },
               { slug: "0-1-que-puede-hacer-en-el-chat", title: "Qué puede hacer ya en el chat", type: "article", durationMin: A },
-              { slug: "0-1-reescribir-correo-tres-tonos", title: "Reescribe un correo en tres tonos distintos", type: "practice", durationMin: P },
+              {
+                slug: "0-1-reescribir-correo-tres-tonos",
+                title: "Reescribe un correo en tres tonos distintos",
+                type: "practice",
+                durationMin: P,
+                checklist: [
+                  "He partido de un correo o texto mío.",
+                  "He pedido al menos tres tonos distintos.",
+                  "He comparado las versiones y elegido la que mejor encaja.",
+                ],
+              },
               { slug: "0-1-adjuntar-archivos-imagenes", title: "Adjuntar archivos e imágenes", type: "article", durationMin: A, techniques: ["subir-archivos"] },
-              { slug: "0-1-resumir-documento", title: "Sube un documento y pide un resumen de 5 puntos", type: "practice", durationMin: P, techniques: ["subir-archivos"] },
+              {
+                slug: "0-1-resumir-documento",
+                title: "Sube un documento y pide un resumen de 5 puntos",
+                type: "practice",
+                durationMin: P,
+                techniques: ["subir-archivos"],
+                checklist: [
+                  "He subido un documento mío.",
+                  "He pedido un resumen breve con formato (p. ej. 5 puntos).",
+                  "He comprobado que el resumen es fiel a lo que dice el documento.",
+                ],
+              },
             ],
           },
           {
@@ -135,7 +156,19 @@ export const curriculum: SeedLevel[] = [
               { slug: "0-1-lo-que-claude-no-hace-bien", title: "Lo que Claude NO hace bien", type: "article", durationMin: A, techniques: ["verificar-respuestas"] },
               { slug: "0-1-como-verificar", title: "Cómo verificar", type: "article", durationMin: A, techniques: ["verificar-respuestas"] },
               { slug: "0-1-privacidad-y-memoria", title: "Privacidad, buen uso y memoria entre conversaciones", type: "article", durationMin: A },
-              { slug: "0-1-hito-conversacion-util", title: "Hito: una conversación útil de principio a fin", type: "milestone", durationMin: M },
+              {
+                slug: "0-1-hito-conversacion-util",
+                title: "Hito: una conversación útil de principio a fin",
+                type: "milestone",
+                durationMin: M,
+                checklist: [
+                  "He resuelto una tarea real mía de principio a fin con Claude.",
+                  "He iterado al menos una vez para mejorar el resultado.",
+                  "He usado al menos una herramienta del curso (archivo, formato o búsqueda web) cuando encajaba.",
+                  "He verificado algo (un dato o una fuente) en vez de fiarme sin más.",
+                  "He anotado qué funcionó y qué haría distinto.",
+                ],
+              },
             ],
           },
         ],
