@@ -1,0 +1,7 @@
+# Reverse proxy de producción (docs/01: OVH tras Caddy).
+# DOMAIN llega del compose: con un dominio real, Caddy emite y renueva
+# el certificado TLS automáticamente; sin él (localhost:80) sirve HTTP
+# plano para la verificación local.
+{$DOMAIN:localhost} {
+	reverse_proxy app:3000
+}

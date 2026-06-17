@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1781161887399,
+      "tag": "0000_narrow_typhoid_mary",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1781162400506,
+      "tag": "0001_aberrant_frank_castle",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1781255467976,
+      "tag": "0002_neat_colleen_wing",
+      "breakpoints": true
+    }
+  ]
+}

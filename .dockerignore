@@ -1,0 +1,22 @@
+# Contexto de build de docker/Dockerfile (contexto = raíz del repo).
+node_modules
+.next
+.git
+.github
+data
+docker/dist
+docker/.env
+.env
+.env.*
+!.env.example
+docs
+tests
+playwright-report
+test-results
+coverage
+*.tsbuildinfo
+.claude
+.vscode
+README.md
+AGENTS.md
+CLAUDE.md

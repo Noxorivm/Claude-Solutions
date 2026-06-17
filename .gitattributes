@@ -1,0 +1,3 @@
+# Los scripts de operación corren en el host Linux (OVH): siempre LF,
+# aunque el checkout sea en Windows.
+*.sh text eol=lf

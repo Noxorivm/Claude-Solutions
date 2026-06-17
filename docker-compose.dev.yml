@@ -1,0 +1,21 @@
+# Dev database only. Production compose lives in docker/ (F6).
+# Host port 5433: a host-level Postgres already listens on 5432 on this machine.
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: claude_solutions
+      POSTGRES_PASSWORD: claude_solutions
+      POSTGRES_DB: claude_solutions
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U claude_solutions -d claude_solutions"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+
+volumes:
+  postgres-data:

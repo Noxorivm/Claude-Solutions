@@ -1,0 +1,8 @@
+node_modules/
+.next/
+coverage/
+data/
+docs/
+drizzle/
+content/
+pnpm-lock.yaml

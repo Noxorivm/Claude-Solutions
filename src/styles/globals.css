@@ -1,0 +1,700 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-display: var(--font-display);
+  --font-heading: var(--font-display);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-success: var(--success);
+  --color-success-ink: var(--success-ink);
+  --color-danger-ink: var(--danger-ink);
+  --color-info: var(--info);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/* Icono de los toasts de error con la tinta de error accesible (F6-T3). */
+[data-sonner-toast][data-type="error"] [data-icon] {
+  color: var(--danger-ink);
+}
+
+/* XP / lección completada (R2b-1): el check del toast de éxito en oro,
+   en paralelo al de error. Entrada y aria-live de sonner intactos. */
+[data-sonner-toast][data-type="success"] [data-icon] {
+  color: var(--primary);
+}
+
+/*
+ * Tokens de docs/06 §"El Tapete".
+ * Tema oscuro "Función" por defecto (:root); claro "Ensayo" en .light.
+ * Mapeo a las variables shadcn: Telón→background, Fieltro→card/popover,
+ * surface-2→secondary/muted/accent (hovers), Marfil→foreground,
+ * Latón→primary y ring (foco), Dorso→info, Corazones→destructive.
+ */
+:root {
+  /* R2a «Tapete nocturno»: Telón a verde petróleo casi negro y
+     superficies verde-azuladas; el oro #D4AF37 se conserva. Ratios
+     clave (calculados, ver resumen R2a): Marfil/bg 15.7 · Marfil/card
+     14.0 · oro/bg 9.0 · oro/surface-2 7.1 · ink-muted/bg 9.8 ·
+     danger-ink/surface-2 5.0 · success-ink/card 6.7 · info/card 5.8. */
+  --background: #0a1310; /* Telón nocturno */
+  --foreground: #f2e9da; /* Marfil */
+  --card: #11201b; /* Fieltro verde */
+  --card-foreground: #f2e9da;
+  --popover: #11201b;
+  --popover-foreground: #f2e9da;
+  --primary: #d4af37; /* Oro vivo */
+  --primary-foreground: #0a1310;
+  --secondary: #182b24; /* surface-2 */
+  --secondary-foreground: #f2e9da;
+  --muted: #182b24;
+  --muted-foreground: #c9b8a8; /* ink-muted */
+  --accent: #182b24;
+  --accent-foreground: #f2e9da;
+  /* Halo dorado para hover/foco (solo box-shadows, nunca texto). */
+  --accent-glow: color-mix(in srgb, var(--primary) 35%, transparent);
+  --destructive: #d4564b; /* Corazones */
+  /* Texto de error pequeño (F6-T3): Corazones a 4.2:1 no llega; esta
+     variante da ≥4.5:1 sobre Telón, Fieltro y surface-2. */
+  --danger-ink: #e0786e;
+  --border: #2a4038;
+  --input: #2a4038;
+  --ring: #d4af37; /* foco Oro */
+  --success: #2e6b4f; /* Tapete (fondo de éxito) */
+  --success-ink: #5fb48c;
+  --info: #7d96d8; /* Dorso */
+  --chart-1: #d4af37;
+  --chart-2: #7d96d8;
+  --chart-3: #5fb48c;
+  --chart-4: #d4564b;
+  --chart-5: #c9b8a8;
+  --radius: 0.625rem; /* 10px controles (tarjetas via radius-xl/2xl) */
+  --sidebar: #11201b;
+  --sidebar-foreground: #f2e9da;
+  --sidebar-primary: #d4af37;
+  --sidebar-primary-foreground: #0a1310;
+  --sidebar-accent: #182b24;
+  --sidebar-accent-foreground: #f2e9da;
+  --sidebar-border: #2a4038;
+  --sidebar-ring: #d4af37;
+  /* R2a: line-art propio (astros, naipe esquemático, lunas) como
+     textura de superficies principales, 3–5 % de opacidad. */
+  --texture-arcana: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='%23d4af37' stroke-opacity='.05'%3E%3Cpath d='M60 28l3 11 11 3-11 3-3 11-3-11-11-3 11-3Z'/%3E%3Cpath d='M170 150a16 16 0 1 0 14 23 13 13 0 1 1-14-23Z'/%3E%3Crect x='150' y='40' width='26' height='36' rx='3' transform='rotate(12 163 58)'/%3E%3Cpath d='M163 52l4 6-4 6-4-6Z'/%3E%3Cpath d='M40 180l2.2 6.8 6.8 2.2-6.8 2.2-2.2 6.8-2.2-6.8-6.8-2.2 6.8-2.2Z'/%3E%3Ccircle cx='214' cy='208' r='5'/%3E%3Cpath d='M214 196v24M202 208h24' stroke-opacity='.035'/%3E%3C/g%3E%3Cg fill='%23d4af37' fill-opacity='.05'%3E%3Ccircle cx='110' cy='110' r='1'/%3E%3Ccircle cx='28' cy='84' r='1'/%3E%3Ccircle cx='196' cy='96' r='1'/%3E%3Ccircle cx='84' cy='214' r='1'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/*
+ * Tema claro "Sepia" (CS-T1; sustituye al «Ensayo» de Cubiletica). Paleta
+ * cálida: fondos tostados, tinta marrón y acento latón. Regla heredada de
+ * docs/06: el dorado vivo (#D4AF37/#C9A227) NUNCA como texto/foco sobre fondo
+ * claro; aquí el acento es Latón oscuro #7a540f, que cumple AA en las tres
+ * superficies. Ratios AA recalculados en docs/06 §"Tema claro Sepia".
+ */
+.light {
+  --background: #ede0cc; /* Tostado (fondo general) */
+  --foreground: #3b2c1a; /* Tinta marrón (10.34 sobre Tostado) */
+  --card: #f8f0e2; /* Pergamino (tarjetas, popover, sidebar) */
+  --card-foreground: #3b2c1a;
+  --popover: #f8f0e2;
+  --popover-foreground: #3b2c1a;
+  /* Latón oscuro: acento de marca en claro. ≥4.5:1 como texto en Tostado
+     (5.20), Pergamino (5.98) y Tostado-2 (4.69) — mantiene la regla del
+     dorado de docs/06 (nunca oro vivo como texto sobre fondo claro). */
+  --primary: #7a540f;
+  --primary-foreground: #fbf6ec; /* 6.28:1 sobre Latón (texto de botón) */
+  --secondary: #e4d5bc; /* Tostado-2 (hover/elevación) */
+  --secondary-foreground: #3b2c1a;
+  --muted: #e4d5bc;
+  --muted-foreground: #5f4a2e; /* Marrón medio (5.80–7.40 en las 3 superficies) */
+  --accent: #e4d5bc;
+  --accent-foreground: #3b2c1a;
+  --destructive: #a93226;
+  --danger-ink: #a93226; /* texto de error: 4.59–5.85 en las 3 superficies */
+  --accent-glow: color-mix(in srgb, var(--primary) 20%, transparent);
+  /* Borde sepia sutil (1.6–1.8): decorativo, como en «Ensayo»; el estado
+     esencial lo lleva el anillo de foco (Latón 5.20:1) y la sombra. */
+  --border: #c7b392;
+  --input: #c7b392;
+  --ring: #7a540f; /* foco Latón (5.20:1 sobre Tostado) */
+  --success: #1f5c42; /* Verde profundo */
+  --success-ink: #1f5c42; /* texto de éxito: 5.45–6.95 en las 3 superficies */
+  --info: #33508f; /* Azul tinta (enlaces): 5.42–6.91 como texto */
+  --chart-1: #7a540f;
+  --chart-2: #33508f;
+  --chart-3: #1f5c42;
+  --chart-4: #a93226;
+  --chart-5: #5f4a2e;
+  --sidebar: #f8f0e2;
+  --sidebar-foreground: #3b2c1a;
+  --sidebar-primary: #7a540f;
+  --sidebar-primary-foreground: #fbf6ec;
+  --sidebar-accent: #e4d5bc;
+  --sidebar-accent-foreground: #3b2c1a;
+  --sidebar-border: #c7b392;
+  --sidebar-ring: #7a540f;
+  /* Heredado de R2a-fix: el claro es tema secundario SIN atmósfera ni
+     textura; el line-art dorado del oscuro se apaga aquí (cubre
+     felt-texture y el interior del medallón de una vez). */
+  --texture-arcana: none;
+}
+
+@layer components {
+  /* Prosa de lección: GFM con medida 68ch y callouts (docs/06 §Layout-Lección). */
+  .lesson-md {
+    max-width: 68ch;
+  }
+  .lesson-md > * + * {
+    margin-top: 0.9em;
+  }
+  .lesson-md h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 1.6em;
+    letter-spacing: -0.01em;
+  }
+  .lesson-md h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 1.4em;
+  }
+  .lesson-md ul,
+  .lesson-md ol {
+    padding-left: 1.4em;
+  }
+  .lesson-md ul {
+    list-style: disc;
+  }
+  .lesson-md ol {
+    list-style: decimal;
+  }
+  .lesson-md li + li {
+    margin-top: 0.35em;
+  }
+  .lesson-md a {
+    color: var(--info);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .lesson-md blockquote {
+    border-left: 3px solid var(--primary);
+    background: var(--card);
+    border-radius: 0 12px 12px 0;
+    padding: 0.75em 1em;
+  }
+  .lesson-md img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+  }
+  .lesson-md table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+  }
+  .lesson-md th,
+  .lesson-md td {
+    border: 1px solid var(--border);
+    padding: 0.45em 0.7em;
+    text-align: left;
+  }
+  .lesson-md th {
+    background: var(--card);
+    font-weight: 700;
+  }
+  .lesson-md code {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.1em 0.35em;
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+  }
+  .lesson-md pre {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.9em 1em;
+    overflow-x: auto;
+  }
+  .lesson-md pre code {
+    border: 0;
+    padding: 0;
+    background: transparent;
+  }
+
+  /* ---- R1 «Academia arcana»: microinteracciones (docs/06 §Movimiento).
+     Transiciones Y desplazamientos de hover solo bajo motion-safe;
+     los glows estáticos de foco se mantienen siempre (no son
+     movimiento, son visibilidad). ---- */
+
+  /* R2a: el anillo rectangular de 1px de R1 chocaba con las esquinas
+     recortadas del marco ornamental; queda solo el halo difuso. */
+  .naipe-tilt:hover,
+  .naipe-tilt:focus-visible {
+    box-shadow: 0 14px 34px var(--accent-glow);
+  }
+  .card-lift:hover {
+    box-shadow:
+      0 8px 24px rgb(0 0 0 / 0.35),
+      0 0 0 1px color-mix(in srgb, var(--primary) 20%, transparent);
+  }
+  .nav-indicator {
+    position: relative;
+  }
+  .nav-indicator::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    translate: 0 -50%;
+    width: 2px;
+    height: 0;
+    border-radius: 1px;
+    background: var(--primary);
+  }
+  .nav-indicator:hover::before {
+    height: 0.75rem;
+  }
+  .nav-indicator[aria-current="page"]::before {
+    height: 1.5rem;
+  }
+  /* Enlaces de prosa: subrayado Dorso permanente + línea dorada que
+     crece al hover/foco. */
+  .lesson-md a {
+    text-decoration: none;
+    background-image:
+      linear-gradient(var(--info), var(--info)),
+      linear-gradient(var(--primary), var(--primary));
+    background-size:
+      100% 1px,
+      0% 2px;
+    background-position:
+      0 100%,
+      0 100%;
+    background-repeat: no-repeat;
+    padding-bottom: 2px;
+  }
+  .lesson-md a:hover,
+  .lesson-md a:focus-visible {
+    background-size:
+      100% 1px,
+      100% 2px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .naipe-tilt {
+      transition:
+        transform 0.25s ease-out,
+        box-shadow 0.25s ease-out;
+    }
+    .naipe-tilt:hover,
+    .naipe-tilt:focus-visible {
+      transform: translateY(-4px) rotate3d(1, -1, 0, 2.5deg);
+    }
+    .card-lift {
+      transition:
+        transform 0.2s ease-out,
+        box-shadow 0.2s ease-out;
+    }
+    .card-lift:hover {
+      transform: translateY(-2px);
+    }
+    .nav-indicator::before {
+      transition: height 0.2s ease-out;
+    }
+    .lesson-md a {
+      transition: background-size 0.2s ease-out;
+    }
+  }
+
+  /* Patrón de dorso del naipe bloqueado (docs/06: dorso sutil, CSS puro). */
+  .naipe-back {
+    background-image:
+      repeating-linear-gradient(
+        45deg,
+        transparent 0,
+        transparent 7px,
+        color-mix(in srgb, var(--info) 14%, transparent) 7px,
+        color-mix(in srgb, var(--info) 14%, transparent) 8px
+      ),
+      repeating-linear-gradient(
+        -45deg,
+        transparent 0,
+        transparent 7px,
+        color-mix(in srgb, var(--info) 14%, transparent) 7px,
+        color-mix(in srgb, var(--info) 14%, transparent) 8px
+      );
+  }
+
+  /* ---- R2a «Tapete nocturno» (docs/06 §Ornamentos, en validación). ---- */
+
+  /* Marco ornamental en CSS PURO (R2-fix3, sin border-image). Marco y
+     veladura derivan del MISMO `--frame-clip` (octógono declarado una
+     vez), así que la costura border-image↔clip de R2a-fix2 es
+     estructuralmente imposible en cualquier instancia o tema.
+
+     Doble línea dorada = BORDE del elemento (filo exterior) + BORDE de
+     ::before (filo interior), ambos recortados por el mismo octógono;
+     la separación oscura entre filos es la veladura entrevista. El
+     borde recortado traza el chaflán por construcción (el inglete a 45°
+     del borde coincide con el corte del clip). El filo deriva de
+     `--primary` (oro en oscuro, latón `#7A5E0E` en claro), así que el
+     tema NO necesita variante SVG aparte. Muescas de rombo OMITIDAS
+     (autorizado): la silueta achaflanada + doble línea son lo
+     prioritario y blindan la unión. Veladura 80 % (atmósfera detrás);
+     `reading-surface` la lleva a 95 % (lectura/cronómetro/gráficas).
+     AA del texto sin cambios (Marfil 14.4/14.1, ink-muted 9.0/8.8). */
+  .ornate-frame-sutil,
+  .ornate-frame-strong {
+    position: relative;
+    --frame-clip: polygon(
+      var(--frame-chamfer) 0,
+      calc(100% - var(--frame-chamfer)) 0,
+      100% var(--frame-chamfer),
+      100% calc(100% - var(--frame-chamfer)),
+      calc(100% - var(--frame-chamfer)) 100%,
+      var(--frame-chamfer) 100%,
+      0 calc(100% - var(--frame-chamfer)),
+      0 var(--frame-chamfer)
+    );
+    clip-path: var(--frame-clip);
+    border: var(--frame-outer) solid var(--frame-ink);
+    background-color: color-mix(in srgb, var(--card) 80%, transparent);
+  }
+  /* Filo interior: misma forma, encogida por `inset`; sólo su BORDE
+     pinta (relleno transparente). pointer-events:none — el recuadro
+     cubre el contenido pero no debe interceptar clics (naipe, botones).
+     El contenido vive en el padding (≥ chaflán), nunca bajo el filo. */
+  .ornate-frame-sutil::before,
+  .ornate-frame-strong::before {
+    content: "";
+    position: absolute;
+    inset: var(--frame-gap);
+    clip-path: var(--frame-clip);
+    border: var(--frame-inner) solid var(--frame-ink);
+    pointer-events: none;
+  }
+  .ornate-frame-sutil {
+    --frame-chamfer: 6px;
+    --frame-outer: 1.5px;
+    --frame-inner: 1px;
+    --frame-gap: 3.5px;
+    --frame-ink: color-mix(in srgb, var(--primary) 48%, transparent);
+  }
+  .ornate-frame-strong {
+    --frame-chamfer: 8.4px;
+    --frame-outer: 2px;
+    --frame-inner: 1.5px;
+    --frame-gap: 5px;
+    --frame-ink: color-mix(in srgb, var(--primary) 88%, transparent);
+  }
+  /* Halo del protagonista: clip-path recorta box-shadow y también el
+     drop-shadow del propio elemento (el filtro se aplica ANTES del
+     clip), así que el halo vive en el wrapper. */
+  .ornate-glow {
+    filter: drop-shadow(0 0 17px color-mix(in srgb, var(--primary) 13%, transparent));
+  }
+  /* Tema claro: el filo deriva de `--primary` (latón `#7A5E0E` en
+     `.light`), así que sólo cambia la superficie a sólida (sin
+     atmósfera que entrever). Misma construcción y misma silueta — sin
+     costura tampoco aquí. */
+  .light .ornate-frame-sutil,
+  .light .ornate-frame-strong {
+    background-color: var(--card);
+  }
+  .light .ornate-glow {
+    filter: none;
+  }
+
+  /* Medallón hexagonal dorado para iconos (Streak, PlayerLevel). */
+  .hex-medallion {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 50px;
+    flex: none;
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--primary) 85%, white),
+      color-mix(in srgb, var(--primary) 55%, transparent)
+    );
+  }
+  .hex-medallion::before {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    background:
+      var(--texture-arcana),
+      linear-gradient(180deg, var(--secondary), var(--card));
+  }
+  .hex-medallion > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Titular dorado metálico (H1 y nombres de nivel). El stop más
+     oscuro (#A98826) mantiene 5.6:1 sobre Telón y 5.0:1 sobre Fieltro. */
+  .heading-gilded {
+    background-image: linear-gradient(
+      180deg,
+      #f5e3a3 0%,
+      #d4af37 55%,
+      #a98826 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.4));
+  }
+  /* Regla del dorado de docs/06: nunca texto dorado sobre papel claro. */
+  .light .heading-gilded {
+    background-image: none;
+    color: var(--primary);
+    filter: none;
+  }
+  @supports not (background-clip: text) {
+    .heading-gilded {
+      background-image: none;
+      color: var(--primary);
+      filter: none;
+    }
+  }
+
+  /* Subtítulo de sección en versalitas con tracking ancho. */
+  .heading-eyebrow {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--primary);
+  }
+
+  /* Textura de fieltro line-art sobre superficies principales. */
+  .felt-texture {
+    background-image: var(--texture-arcana);
+    background-size: 240px 240px;
+  }
+
+  /* Columna de lectura (R2b-1, regla de oro): fieltro CASI sólido y SIN
+     textura bajo el texto corrido — la dirección vive en el perímetro,
+     la legibilidad manda en el centro. Marfil/ink-muted conservan su
+     ratio de Fieltro (14.0 / 8.8) porque la veladura es casi opaca. */
+  .reading-surface {
+    background-color: color-mix(in srgb, var(--card) 95%, transparent);
+  }
+
+  /* ---- Atmósfera del shell: niebla + motas (solo oscuro, solo fondo,
+     transform/opacity-only; presupuesto docs/06 §Antipatrones). ---- */
+  .atmosphere {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  html.light .atmosphere {
+    display: none;
+  }
+  .atmosphere::before,
+  .atmosphere::after {
+    content: "";
+    position: absolute;
+    inset: -22%;
+  }
+  .atmosphere::before {
+    background-image:
+      radial-gradient(
+        900px 600px at 18% 12%,
+        color-mix(in srgb, var(--success) 8%, transparent),
+        transparent 70%
+      ),
+      radial-gradient(
+        1100px 700px at 85% 30%,
+        color-mix(in srgb, var(--primary) 4%, transparent),
+        transparent 70%
+      );
+  }
+  .atmosphere::after {
+    background-image:
+      radial-gradient(
+        1000px 800px at 70% 88%,
+        color-mix(in srgb, var(--info) 5%, transparent),
+        transparent 70%
+      ),
+      radial-gradient(
+        800px 600px at 28% 72%,
+        color-mix(in srgb, var(--success) 6%, transparent),
+        transparent 70%
+      );
+  }
+  .mota {
+    position: absolute;
+    border-radius: 9999px;
+    background: var(--primary);
+    opacity: 0.3;
+    box-shadow: 0 0 6px var(--accent-glow);
+  }
+
+  /* Entradas: secciones con fade-up (una vez) y fade del main al
+     navegar (via template.tsx). View Transitions queda fuera: en
+     Next 16 exige flag experimental. */
+  .section-enter,
+  .route-fade {
+    animation: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .atmosphere::before {
+      animation: fog-drift-a 84s ease-in-out infinite alternate;
+      will-change: transform;
+    }
+    .atmosphere::after {
+      animation: fog-drift-b 66s ease-in-out infinite alternate;
+      will-change: transform;
+    }
+    .mota {
+      animation: mota-float var(--mota-dur, 18s) ease-in-out infinite
+        alternate;
+      will-change: transform;
+    }
+    .section-enter {
+      animation: section-fade-up 0.45s ease-out both;
+      animation-delay: calc(var(--enter-i, 0) * 70ms);
+    }
+    .route-fade {
+      animation: route-fade 0.22s ease-out both;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .mota {
+      display: none;
+    }
+  }
+}
+
+@keyframes fog-drift-a {
+  from {
+    transform: translate3d(-3%, -2%, 0);
+  }
+  to {
+    transform: translate3d(3%, 2.5%, 0);
+  }
+}
+@keyframes fog-drift-b {
+  from {
+    transform: translate3d(2.5%, 2%, 0);
+  }
+  to {
+    transform: translate3d(-3%, -2.5%, 0);
+  }
+}
+@keyframes mota-float {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(10px, -38px, 0);
+  }
+}
+@keyframes section-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes route-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background font-sans text-foreground;
+    /* docs/06: cuerpo Atkinson a 17px, line-height 1.6 */
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  /* R1/R2a: viñeteado del Telón (solo tema oscuro, CSS puro): brillo
+     dorado ≤5% arriba + esquinas más oscuras, reforzado en R2a con el
+     tinte verde-noche. Solo puede OSCURECER: nunca reduce el contraste
+     del texto. */
+  html:not(.light) body {
+    background-image:
+      radial-gradient(
+        900px 480px at 50% -8%,
+        color-mix(in srgb, var(--primary) 5%, transparent),
+        transparent 70%
+      ),
+      radial-gradient(
+        140% 110% at 50% 42%,
+        transparent 50%,
+        rgb(2 7 5 / 0.6) 100%
+      );
+    background-attachment: fixed;
+  }
+  /* Foco visible: anillo Oro 2px + offset (docs/06 §Accesibilidad);
+     R1 añade glow SIN sustituir el anillo. */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    box-shadow: 0 0 14px var(--accent-glow);
+  }
+  /* Spline Sans Mono para datos: cifras tabulares (docs/06 §Tipografía) */
+  .font-mono {
+    font-variant-numeric: tabular-nums;
+  }
+}
