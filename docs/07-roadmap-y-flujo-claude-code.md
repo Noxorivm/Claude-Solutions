@@ -48,10 +48,17 @@ la plataforma base se conserva más abajo («Roadmap heredado de Cubiletica»).
   derechos/actualización. Todo **anclado en doc oficial vigente** y citado
   (docs.claude.com, support.claude.com, anthropic.com, code.claude.com). Solo
   docs; sin tocar seed ni código.
-- [ ] **CS-T3 Seed del currículo (estructura):** volcar al seed los 6 niveles, los
-  cursos/módulos/lecciones de N0–N1 y el catálogo de habilidades de docs/02;
-  cuerpos de lección como `[REDACTAR]`; idempotente (reactiva el full-flow E2E
-  cuando exista al menos un curso publicado).
+- [x] **CS-T3 Seed del currículo (esqueleto en borrador) (17/06/2026):** encajada
+  en `src/db/seed/curriculum.ts` la estructura de docs/02 — 6 niveles
+  reconciliados (tagline + hito de salida), N0–N1 a nivel de lección (5 cursos,
+  15 módulos, 50 lecciones; tipos mapeados `exercise`→`practice`), N2–N5 a nivel
+  de módulo (1 curso por nivel, 17 módulos, sin lecciones) y las 41 habilidades
+  en `techniques` (puente de categoría al enum heredado, sin migrar; relabel en
+  CS-T5), con 31 enlaces lección↔habilidad. **Todo `draft`**, cuerpos
+  `[REDACTAR]`, sin checklists ni preguntas de quiz. `db:seed` idempotente; app
+  arranca (student-facing vacío, estructura en el admin); E2E verde (smoke +
+  full-flow skip). Sin tocar esquema; sin lecciones `simulation` (reservado a
+  CS-T6).
 - [ ] **CS-T4 Redacción de lecciones N0–N1:** escribir los cuerpos con la **voz**
   de docs/02 §2, anclados y citados, vía el pipeline `content/` heredado.
 - [ ] **CS-T5 Remapeo de conceptos en la app:** adaptar el dominio y el microcopy
