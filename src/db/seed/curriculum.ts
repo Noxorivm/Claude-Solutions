@@ -104,7 +104,18 @@ export const curriculum: SeedLevel[] = [
               { slug: "0-1-que-es-claude", title: "¿Qué es Claude?", type: "article", durationMin: A },
               { slug: "0-1-donde-vive-claude", title: "Dónde vive Claude: web, escritorio y móvil", type: "article", durationMin: A },
               { slug: "0-1-familias-de-modelos", title: "Las familias de modelos (Opus, Sonnet, Haiku)", type: "article", durationMin: A, techniques: ["elegir-modelo"] },
-              { slug: "0-1-primer-mensaje", title: "Tu primera cuenta y tu primer mensaje", type: "practice", durationMin: P },
+              {
+                slug: "0-1-primer-mensaje",
+                title: "Tu primera cuenta y tu primer mensaje",
+                type: "practice",
+                durationMin: P,
+                checklist: [
+                  "He creado mi cuenta y abierto un chat nuevo.",
+                  "He escrito un primer mensaje sobre una tarea real mía.",
+                  "He leído la respuesta y le he pedido al menos un cambio.",
+                  "Me he quedado con la versión que me sirve.",
+                ],
+              },
               { slug: "0-1-repaso-que-es-claude", title: "Repaso: qué es y qué no es Claude", type: "quiz", durationMin: Q },
             ],
           },
@@ -490,7 +501,70 @@ export interface SeedQuiz {
   questions: SeedQuizQuestion[];
 }
 
-export const quizzesSeed: SeedQuiz[] = [];
+export const quizzesSeed: SeedQuiz[] = [
+  {
+    lessonSlug: "0-1-repaso-que-es-claude",
+    passPct: 80,
+    questions: [
+      {
+        prompt: "¿Qué es Claude, en esencia?",
+        kind: "single",
+        explanation:
+          "Claude es un modelo de lenguaje: genera la respuesta que mejor encaja con tu petición. No es un buscador ni una base de datos de hechos.",
+        options: [
+          { text: "Un asistente de IA (modelo de lenguaje) que genera texto", isCorrect: true },
+          { text: "Un buscador de internet", isCorrect: false },
+          { text: "Una base de datos de hechos verificados", isCorrect: false },
+          { text: "Una persona que responde por chat", isCorrect: false },
+        ],
+      },
+      {
+        prompt: "Claude siempre da información correcta.",
+        kind: "truefalse",
+        explanation:
+          "No: puede 'alucinar', es decir, inventar datos con tono seguro. Por eso conviene verificar lo importante.",
+        options: [
+          { text: "Falso", isCorrect: true },
+          { text: "Verdadero", isCorrect: false },
+        ],
+      },
+      {
+        prompt: "Necesitas saber algo que pasó ayer. ¿Qué es verdad?",
+        kind: "single",
+        explanation:
+          "El conocimiento de Claude tiene una fecha de corte; para lo reciente necesita buscar en la web (lo verás más adelante).",
+        options: [
+          { text: "Por defecto Claude no lo sabe; necesita buscar en la web", isCorrect: true },
+          { text: "Claude siempre conoce las noticias del día", isCorrect: false },
+          { text: "Claude nunca puede acceder a información reciente", isCorrect: false },
+          { text: "Hay que pagar para que responda cualquier cosa", isCorrect: false },
+        ],
+      },
+      {
+        prompt: "Para una pregunta sencilla y rápida, ¿qué familia de modelos encaja mejor?",
+        kind: "single",
+        explanation:
+          "Hay familias rápidas, equilibradas y muy capaces. Para lo sencillo, una rápida responde antes; reserva las más capaces para lo difícil.",
+        options: [
+          { text: "Una ligera y rápida (tipo Haiku)", isCorrect: true },
+          { text: "Siempre la más potente disponible", isCorrect: false },
+          { text: "Da igual: solo existe un modelo de Claude", isCorrect: false },
+          { text: "Ninguna: las preguntas sencillas no se pueden responder", isCorrect: false },
+        ],
+      },
+      {
+        prompt: "Puedes empezar a usar Claude gratis.",
+        kind: "truefalse",
+        explanation:
+          "Sí: el plan gratis cubre de sobra todo el Nivel 0 (chat, escritura, resúmenes, búsqueda web y archivos).",
+        options: [
+          { text: "Verdadero", isCorrect: true },
+          { text: "Falso", isCorrect: false },
+        ],
+      },
+    ],
+  },
+];
 
 // Logros base genéricos (independientes del temario). Se conservan para que la
 // vitrina y la mecánica de XP/rachas funcionen desde el primer día.
