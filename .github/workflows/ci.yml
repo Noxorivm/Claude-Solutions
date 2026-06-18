@@ -55,10 +55,17 @@ jobs:
 
       - run: pnpm exec playwright install --with-deps chromium
 
-      # E2E completo contra la BD real: esquema + contenido del seed.
+      # E2E completo contra la BD real: migraciones (esquema) + seed
+      # (estructura, checklists, quiz) + content:apply (cuerpos de lección).
       - run: pnpm db:migrate
 
       - run: pnpm db:seed
+
+      # Vuelca content/courses/**/*.md a lessons.content_md. Idempotente y
+      # SIEMPRE tras el seed (que crea la estructura): sin este paso las
+      # lecciones quedarían con "[REDACTAR]" fuera de desarrollo y el render
+      # del cuerpo fallaría. Aborta (exit 1) si un .md no casa con un slug.
+      - run: pnpm content:apply
 
       - run: pnpm test:e2e
 

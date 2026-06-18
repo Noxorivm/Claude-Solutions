@@ -38,6 +38,10 @@ COPY --from=build --chown=nextjs:nodejs /app/public ./public
 COPY --from=build --chown=nextjs:nodejs /app/drizzle ./drizzle
 COPY --from=build --chown=nextjs:nodejs /app/docker/dist/migrate.mjs ./migrate.mjs
 COPY --from=build --chown=nextjs:nodejs /app/docker/dist/seed.mjs ./seed.mjs
+COPY --from=build --chown=nextjs:nodejs /app/docker/dist/apply-content.mjs ./apply-content.mjs
+# Cuerpos de lección: content:apply los lee del disco en runtime (no van en
+# el bundle de esbuild), así que el directorio viaja a la imagen.
+COPY --from=build --chown=nextjs:nodejs /app/content ./content
 
 # Punto de montaje de subidas con dueño correcto (docs/04 §Patrones 7);
 # el volumen nombrado hereda estos permisos al inicializarse.
@@ -46,5 +50,10 @@ RUN mkdir -p /data/uploads && chown -R nextjs:nodejs /data
 USER nextjs
 EXPOSE 3000
 
-# Migrate-on-start: si las migraciones fallan, el contenedor no arranca.
-CMD ["sh", "-c", "node migrate.mjs && exec node server.js"]
+# Arranque: migrate → seed → content:apply → server. Los tres pasos de
+# datos son idempotentes (migrate salta lo aplicado; seed upsertea por
+# clave natural; content:apply solo pisa cuerpos "[REDACTAR]"/vacíos), así
+# que es seguro en cada arranque. Encadenados con && : si alguno falla, el
+# contenedor no arranca (mejor un fallo visible que servir lecciones sin
+# cuerpo). El seed exige SEED_ADMIN_EMAIL/PASSWORD (ver docker/.env.example).
+CMD ["sh", "-c", "node migrate.mjs && node seed.mjs && node apply-content.mjs && exec node server.js"]

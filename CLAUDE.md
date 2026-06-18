@@ -20,6 +20,22 @@ AGENTS.md y las guías en node_modules/next/dist/docs/.
 - BD dev: docker compose -f docker-compose.dev.yml up -d (Postgres 16 en
   localhost:5433; el 5432 lo ocupa un Postgres del host de esta máquina).
 
+## Contenido de lecciones (content/ → content:apply)
+
+- La ESTRUCTURA del currículo (niveles, cursos, módulos, lecciones,
+  checklists, quiz) la crea el seed (`src/db/seed/curriculum.ts`). Los
+  CUERPOS de lección NO: el seed deja `content_md = "[REDACTAR]"`.
+- Los cuerpos viven en `content/courses/<curso>/<slug>.md` (frontmatter con
+  `slug:`) y se vuelcan a `lessons.content_md` con `pnpm content:apply`
+  (`scripts/apply-content.ts`), casando por slug.
+- Idempotente: solo pisa cuerpos `[REDACTAR]`/vacíos y respeta lo editado en
+  el admin salvo `--force`. Aborta (exit 1) si un `.md` no casa con ningún
+  slug (corre el seed antes).
+- Orden SIEMPRE `migrate → seed → content:apply`. Cableado en CI
+  (`.github/workflows/ci.yml`) y en el arranque de producción (CMD de
+  `docker/Dockerfile`: migrate → seed → content:apply → server). Sin
+  `content:apply` las lecciones se sirven sin cuerpo fuera de desarrollo.
+
 ## Convenciones
 
 - TypeScript estricto; prohibido `any` y `@ts-ignore` sin justificación.

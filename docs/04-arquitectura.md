@@ -96,7 +96,7 @@ Desarrollo: `docker compose -f docker-compose.dev.yml up -d` (Postgres) + `pnpm 
 1. `Dockerfile` multi-stage (deps → build → runner `node:22-alpine`, `output: "standalone"`).
 2. `docker/docker-compose.yml`: `caddy` (80/443, volumen certificados) → `app:3000`; `postgres` con volumen; red interna; healthchecks.
 3. `Caddyfile`: `claude-solutions.tudominio.com { reverse_proxy app:3000 }`.
-4. Despliegue por SSH: `git pull && docker compose build && docker compose up -d` (documentar en `docs/deploy.md` durante F6). Migraciones se ejecutan en el arranque del contenedor (`db:migrate` antes de `start`).
+4. Despliegue por SSH: `git pull && docker compose build && docker compose up -d` (documentar en `docs/deploy.md` durante F6). Migraciones, seed y contenido se ejecutan en el arranque del contenedor (`migrate → seed → content:apply` antes de `start`; los tres idempotentes).
 
 ## Decisiones registradas (ADR breve)
 

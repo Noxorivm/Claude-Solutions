@@ -18,7 +18,7 @@
     "db:seed": "tsx src/db/seed/seed.ts",
     "db:check": "tsx src/db/check.ts",
     "content:apply": "tsx scripts/apply-content.ts",
-    "build:prod-scripts": "esbuild docker/migrate.entry.ts --bundle --platform=node --target=node22 --format=esm --banner:js=\"import { createRequire } from 'node:module'; const require = createRequire(import.meta.url);\" --outfile=docker/dist/migrate.mjs && esbuild src/db/seed/seed.ts --bundle --platform=node --target=node22 --format=esm --banner:js=\"import { createRequire } from 'node:module'; const require = createRequire(import.meta.url);\" --outfile=docker/dist/seed.mjs"
+    "build:prod-scripts": "esbuild docker/migrate.entry.ts --bundle --platform=node --target=node22 --format=esm --banner:js=\"import { createRequire } from 'node:module'; const require = createRequire(import.meta.url);\" --outfile=docker/dist/migrate.mjs && esbuild src/db/seed/seed.ts --bundle --platform=node --target=node22 --format=esm --banner:js=\"import { createRequire } from 'node:module'; const require = createRequire(import.meta.url);\" --outfile=docker/dist/seed.mjs && esbuild scripts/apply-content.ts --bundle --platform=node --target=node22 --format=esm --banner:js=\"import { createRequire } from 'node:module'; const require = createRequire(import.meta.url);\" --outfile=docker/dist/apply-content.mjs"
   },
   "dependencies": {
     "better-auth": "^1.6.16",

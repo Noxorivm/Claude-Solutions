@@ -1,7 +1,8 @@
 # Despliegue de Claude Solutions (VPS OVH, Docker + Caddy)
 
 Runbook del stack de producción: `docker/docker-compose.yml` levanta
-**app** (Next.js standalone con migrate-on-start), **postgres** (sin
+**app** (Next.js standalone; al arrancar corre migrate → seed →
+content:apply), **postgres** (sin
 puerto publicado) y **caddy** (TLS automático). Las subidas viven en el
 volumen `uploads_data`; los datos de Postgres en `postgres_data`.
 
@@ -49,15 +50,20 @@ volumen `uploads_data`; los datos de Postgres en `postgres_data`.
    # [migrate] migrations up to date
    ```
 
-5. **Seed inicial (una sola vez)** — crea currículo, técnicas, logros y
-   el admin de `SEED_ADMIN_*`:
+5. **Seed y contenido (automáticos al arrancar)** — tras migrate, la app
+   ejecuta `seed` (currículo, técnicas, logros y el admin de
+   `SEED_ADMIN_*`) y después `content:apply` (cuerpos de lección). Ambos
+   son idempotentes; no hace falta ejecutarlos a mano. Comprobar en logs:
 
    ```bash
-   docker compose -f docker/docker-compose.yml --env-file docker/.env exec app node seed.mjs
+   docker compose -f docker/docker-compose.yml --env-file docker/.env logs app \
+     | grep -E "Admin|\[content\]"
+   # Admin creado y promovido: <SEED_ADMIN_EMAIL>   (solo la 1ª vez)
+   # [content] resumen: N aplicadas · … saltadas · 0 sin-match
    ```
 
-   El seed es idempotente: si se ejecuta otra vez no duplica contenido
-   (y deja al admin existente intacto).
+   Para forzar el re-volcado de cuerpos tras editar en el admin:
+   `… --env-file docker/.env exec app node apply-content.mjs --force`.
 
 6. **TLS**: con el DNS ya propagado, Caddy emite el certificado solo en
    el primer acceso a `https://<DOMAIN>`. No hay que hacer nada más.

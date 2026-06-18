@@ -34,8 +34,9 @@ services:
       BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:?}
       BETTER_AUTH_URL: ${BETTER_AUTH_URL:?}
       NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:?}
-      SEED_ADMIN_EMAIL: ${SEED_ADMIN_EMAIL:-}
-      SEED_ADMIN_PASSWORD: ${SEED_ADMIN_PASSWORD:-}
+      # Requeridas: el arranque ejecuta seed, que crea el admin la 1ª vez.
+      SEED_ADMIN_EMAIL: ${SEED_ADMIN_EMAIL:?set SEED_ADMIN_EMAIL in docker/.env}
+      SEED_ADMIN_PASSWORD: ${SEED_ADMIN_PASSWORD:?set SEED_ADMIN_PASSWORD in docker/.env}
       UPLOADS_DIR: ${UPLOADS_DIR:-/data/uploads}
     volumes:
       - uploads_data:/data/uploads

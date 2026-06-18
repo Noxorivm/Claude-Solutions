@@ -70,6 +70,19 @@ la plataforma base se conserva más abajo («Roadmap heredado de Cubiletica»).
     idempotentes y el render en el admin quedan pendientes de Docker (los cubre el
     CI al pushear).
   - [ ] Cursos 0.2, 1.1, 1.2 y 1.3 (resto de N0–N1).
+- [x] **CS-T4b Cablear `content:apply` en CI y arranque (17/06/2026):** el CI
+  ejecutaba `seed` pero no `content:apply`, y el arranque de producción solo
+  hacía `migrate` (el `seed` estaba bundleado pero sin invocar) — fuera de
+  desarrollo las lecciones se servirían con `[REDACTAR]`. Añadido: paso
+  `content:apply` en `.github/workflows/ci.yml` (tras `seed`, antes del e2e);
+  secuencia `migrate → seed → content:apply → server` en el CMD del
+  `docker/Dockerfile` (apply-content bundleado a `docker/dist/`, `content/`
+  copiado a la imagen, `SEED_ADMIN_*` ya requeridas en compose); e2e
+  `lesson-content.spec.ts` que falla si el cuerpo de una lección del 0.1
+  renderiza con `[REDACTAR]` (preview del admin = `MarkdownContent` del
+  alumno); flujo de contenido documentado en `CLAUDE.md` + `docs/04` +
+  `docs/deploy.md`. lint/typecheck/test en verde; e2e/arranque pendientes de
+  Docker (los cubre el CI al pushear).
 - [ ] **CS-T5 Remapeo de conceptos en la app:** adaptar el dominio y el microcopy
   heredados de magia (técnicas → habilidades, "práctica", nombres de rango de
   jugador, taglines de empty-state) al de Claude, **sin** tocar el esquema.
