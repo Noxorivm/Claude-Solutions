@@ -44,12 +44,12 @@ export function practiceXp(
 // Niveles de jugador (docs/03 §G2: cosméticos, distintos de los niveles
 // del currículo). Umbral = XP mínimo para entrar en el nivel.
 export const PLAYER_LEVELS = [
-  { name: "Iniciado", threshold: 0 },
-  { name: "Aprendiz", threshold: 250 },
-  { name: "Ilusionista", threshold: 600 },
-  { name: "Prestidigitador", threshold: 1200 },
-  { name: "Maestro", threshold: 2500 },
-  { name: "Profesional", threshold: 5000 },
+  { name: "Curioso", threshold: 0 },
+  { name: "Conversador", threshold: 250 },
+  { name: "Prompter", threshold: 600 },
+  { name: "Constructor", threshold: 1200 },
+  { name: "Orquestador", threshold: 2500 },
+  { name: "Arquitecto", threshold: 5000 },
 ] as const;
 
 export interface PlayerLevel {

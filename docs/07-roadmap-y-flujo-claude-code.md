@@ -83,7 +83,7 @@ la plataforma base se conserva más abajo («Roadmap heredado de Cubiletica»).
   alumno); flujo de contenido documentado en `CLAUDE.md` + `docs/04` +
   `docs/deploy.md`. lint/typecheck/test en verde; e2e/arranque pendientes de
   Docker (los cubre el CI al pushear).
-- [ ] **CS-T5 Remapeo de conceptos en la app:** adaptar el dominio y el microcopy
+- [x] **CS-T5 Remapeo de conceptos en la app:** adaptar el dominio y el microcopy
   heredados de magia (técnicas → habilidades, "práctica", nombres de rango de
   jugador, taglines de empty-state) al de Claude.
   - [x] **Enum `technique_category` → categorías de Claude (17/06/2026):** de los
@@ -94,8 +94,18 @@ la plataforma base se conserva más abajo («Roadmap heredado de Cubiletica»).
     validadores, UI y docs/05 sin literales mágicos. Verificado en la BD dev: 41
     técnicas con categoría válida, 0 nulas; `db:migrate`/`db:seed`×2/`content:apply`
     OK; lint/typecheck/test (124) + build + e2e en verde.
-  - [ ] Microcopy/terminología de la app (técnicas→habilidades, rangos de jugador,
-    taglines de empty-state), **sin** tocar el esquema.
+  - [x] **Microcopy/terminología — CS-T5b (17/06/2026):** texto de UI en español
+    remapeado a Claude (solo strings; sin esquema, rutas ni identificadores).
+    «técnica(s)»→«habilidad(es)» en `strings.ts` (nav, /app/tecnicas, progreso,
+    admin); rangos de jugador en `xp.ts` con los MISMOS umbrales de XP:
+    Curioso(0)·Conversador(250)·Prompter(600)·Constructor(1200)·Orquestador(2500)·
+    Arquitecto(5000); microcopy mágico reescrito (doble volteo, "el tapete
+    descansa", descriptores de dominio «mirándome las manos / ante la cámara /
+    ante público», anchor del hito «listo para público», "¿lo grabaste en vídeo?").
+    Dejado a propósito: «práctica» (no es magia; fuera del alcance de CS-T5b) y la
+    metáfora VISUAL de naipe/tapete (clases CSS `naipe-*`/`felt-texture`, CourseCard
+    con flip, glifo del empty-state) = lenguaje de diseño, no texto. lint/typecheck/
+    test (124) + build + e2e en verde.
 - [ ] **CS-T6 Simulador:** diseñar y construir el tipo de lección `simulation`
   (feature nueva específica de Claude Solutions).
 

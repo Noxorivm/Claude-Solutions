@@ -50,19 +50,19 @@ describe("practiceXp", () => {
 });
 
 describe("playerLevel", () => {
-  it("límites exactos de umbral: 249 es Iniciado, 250 es Aprendiz", () => {
-    expect(playerLevel(249).name).toBe("Iniciado");
+  it("límites exactos de umbral: 249 es Curioso, 250 es Conversador", () => {
+    expect(playerLevel(249).name).toBe("Curioso");
     expect(playerLevel(250)).toMatchObject({
-      name: "Aprendiz",
+      name: "Conversador",
       current: 250,
       nextThreshold: 600,
       progressPct: 0,
     });
   });
 
-  it("usuario nuevo: Iniciado a 0 con siguiente en 250", () => {
+  it("usuario nuevo: Curioso a 0 con siguiente en 250", () => {
     expect(playerLevel(0)).toEqual({
-      name: "Iniciado",
+      name: "Curioso",
       current: 0,
       nextThreshold: 250,
       progressPct: 0,
@@ -77,15 +77,15 @@ describe("playerLevel", () => {
   });
 
   it("todos los umbrales asignan su nivel", () => {
-    expect(playerLevel(600).name).toBe("Ilusionista");
-    expect(playerLevel(1199).name).toBe("Ilusionista");
-    expect(playerLevel(1200).name).toBe("Prestidigitador");
-    expect(playerLevel(2500).name).toBe("Maestro");
+    expect(playerLevel(600).name).toBe("Prompter");
+    expect(playerLevel(1199).name).toBe("Prompter");
+    expect(playerLevel(1200).name).toBe("Constructor");
+    expect(playerLevel(2500).name).toBe("Orquestador");
   });
 
-  it("5000+ es Profesional sin siguiente umbral", () => {
+  it("5000+ es Arquitecto sin siguiente umbral", () => {
     expect(playerLevel(5000)).toEqual({
-      name: "Profesional",
+      name: "Arquitecto",
       current: 5000,
       nextThreshold: null,
       progressPct: 100,
@@ -94,6 +94,6 @@ describe("playerLevel", () => {
   });
 
   it("xp negativo se trata como 0", () => {
-    expect(playerLevel(-5)).toMatchObject({ name: "Iniciado", progressPct: 0 });
+    expect(playerLevel(-5)).toMatchObject({ name: "Curioso", progressPct: 0 });
   });
 });

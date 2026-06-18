@@ -44,14 +44,14 @@ export const strings = {
     dashboard: "Dashboard",
     ruta: "Ruta",
     practica: "Práctica",
-    tecnicas: "Técnicas",
+    tecnicas: "Habilidades",
     progreso: "Progreso",
     perfil: "Perfil",
   },
   pages: {
     ruta: "Ruta",
     practica: "Práctica",
-    tecnicas: "Técnicas",
+    tecnicas: "Habilidades",
     progreso: "Progreso",
     perfil: "Perfil",
   },
@@ -79,7 +79,7 @@ export const strings = {
     levelProgressLabel: "Progreso hacia el siguiente nivel",
     reviewsTitle: "Repasos de hoy",
     reviewsEmpty:
-      "Nada que repasar hoy. El tapete descansa: sigue con tu lección.",
+      "Nada que repasar hoy. Aprovecha para avanzar con tu lección.",
     overdueDays: (days: number) =>
       days === 1 ? "hace 1 día" : `hace ${days} días`,
     practiceTitle: "Práctica de la semana",
@@ -170,10 +170,10 @@ export const strings = {
     timerLabel: "Tiempo de práctica",
     minDuration: "La sesión mínima es de 1 minuto. Sigue un poco más.",
     dialogTitle: "Terminar sesión",
-    techniqueLabel: "Técnica",
+    techniqueLabel: "Habilidad",
     lessonLabel: "Lección",
     noneOption: "— Sin asignar —",
-    needTarget: "Elige al menos una técnica o una lección.",
+    needTarget: "Elige al menos una habilidad o una lección.",
     ratingLegend: "¿Cómo ha ido? (1–5)",
     notesLabel: "Notas",
     notesPlaceholder: "Qué ha salido bien, qué se atasca…",
@@ -196,13 +196,13 @@ export const strings = {
     minutesShort: (min: number) => `${min} min`,
     ratingOf: (rating: number) => `${rating}/5`,
     emptyHistory:
-      "Aún no has registrado práctica hoy. Diez minutos de doble volteo cuentan.",
+      "Aún no has registrado práctica hoy. Diez minutos afinando un prompt ya cuentan.",
     emptyCta: "Empezar cronómetro",
     dueGroup: "Para repasar hoy",
     nextReviewToast: (relative: string) => `Próximo repaso: ${relative}`,
   },
   techniques: {
-    title: "Técnicas",
+    title: "Habilidades",
     categories: {
       conversation: "Conversación",
       prompting: "Prompting",
@@ -219,9 +219,9 @@ export const strings = {
     applyFilters: "Filtrar",
     clearFilters: "Quitar filtros",
     resultsCount: (shown: number, total: number) =>
-      `${shown} de ${total} técnicas`,
-    emptyFilter: "Ninguna técnica coincide con esos filtros.",
-    colTechnique: "Técnica",
+      `${shown} de ${total} habilidades`,
+    emptyFilter: "Ninguna habilidad coincide con esos filtros.",
+    colTechnique: "Habilidad",
     colCategory: "Categoría",
     colMastery: "Dominio",
     colLastPracticed: "Última práctica",
@@ -237,7 +237,7 @@ export const strings = {
     lessonsEmpty: "Ninguna lección publicada la enseña todavía.",
     historyTitle: "Historial de sesiones",
     historyEmpty:
-      "Aún no has practicado esta técnica. Diez minutos hoy ya cuentan.",
+      "Aún no has practicado esta habilidad. Diez minutos hoy ya cuentan.",
     historyCta: "Empezar cronómetro",
     overdueBadge: "Repaso vencido",
     editorTitle: "Tu dominio",
@@ -250,10 +250,10 @@ export const strings = {
     masteryDescriptors: [
       "No la conozco aún.",
       "La estoy aprendiendo paso a paso.",
-      "La ejecuto mirándome las manos.",
-      "La ejecuto sin mirar, hablando a la vez.",
-      "Fluida ante la cámara: aguanta repeticiones.",
-      "La hago ante público, bajo presión.",
+      "La aplico apoyándome en una guía o mis notas.",
+      "La aplico sin ayuda en los casos habituales.",
+      "La uso con soltura, también en casos peliagudos.",
+      "La domino: la aplico bajo presión y se la explico a otros.",
     ],
   },
   progress: {
@@ -270,14 +270,14 @@ export const strings = {
     noActivity: "sin actividad",
     futureDay: "día futuro",
     categoriesTitle: "Horas por categoría",
-    categoriesNote: "El total incluye sesiones sin técnica asignada.",
+    categoriesNote: "El total incluye sesiones sin habilidad asignada.",
     categoriesEmpty:
-      "Aún no hay práctica con técnica asignada. El cronómetro te espera.",
+      "Aún no hay práctica con habilidad asignada. El cronómetro te espera.",
     totalLabel: "Total",
-    masteryTitle: "Técnicas por dominio",
+    masteryTitle: "Habilidades por dominio",
     masteryEmpty:
-      "Marca tu dominio en cada técnica para ver aquí la distribución.",
-    masteryCount: (n: number) => (n === 1 ? "1 técnica" : `${n} técnicas`),
+      "Marca tu dominio en cada habilidad para ver aquí la distribución.",
+    masteryCount: (n: number) => (n === 1 ? "1 habilidad" : `${n} habilidades`),
     levelsTitle: "Avance por nivel",
     viewRoute: "Ver ruta",
   },
@@ -301,10 +301,10 @@ export const strings = {
   },
   milestone: {
     rubricTitle: "Autoevaluación",
-    anchors: "1 · Necesita trabajo — 5 · Listo para público",
+    anchors: "1 · Necesita trabajo — 5 · Listo para el mundo real",
     reflectionLabel: "Reflexión",
     reflectionPlaceholder:
-      "¿Qué salió bien? ¿Qué repetirías distinto? ¿Lo grabaste en vídeo?",
+      "¿Qué salió bien? ¿Qué harías distinto? ¿Qué le pedirías mejor la próxima vez?",
     save: "Guardar autoevaluación",
     saving: "Guardando…",
     savedToast: (average: string) => `Rúbrica guardada · media ${average}`,
@@ -330,7 +330,7 @@ export const strings = {
       resumen: "Resumen",
       cursos: "Cursos",
       lecciones: "Lecciones",
-      tecnicas: "Técnicas",
+      tecnicas: "Habilidades",
       quizzes: "Quizzes",
       usuarios: "Usuarios",
     },
@@ -339,7 +339,7 @@ export const strings = {
       courses: "Cursos",
       lessons: "Lecciones",
       modules: "Módulos",
-      techniques: "Técnicas",
+      techniques: "Habilidades",
       users: "Usuarios",
       manageCourses: "Gestionar cursos",
       byStatus: (draft: number, published: number, archived: number) =>
@@ -483,10 +483,10 @@ export const strings = {
         "Hay alumnos que ya han marcado este punto (o el hito tiene entregas): no se puede borrar.",
     },
     techniquesPicker: {
-      title: "Técnicas asociadas",
-      save: "Guardar técnicas",
-      saved: "Técnicas guardadas",
-      empty: "No hay técnicas en el catálogo.",
+      title: "Habilidades asociadas",
+      save: "Guardar habilidades",
+      saved: "Habilidades guardadas",
+      empty: "No hay habilidades en el catálogo.",
       count: (n: number) => (n === 1 ? "1 seleccionada" : `${n} seleccionadas`),
     },
     resourcesEditor: {
@@ -545,8 +545,8 @@ export const strings = {
       structureLessonsEmpty: "Sin lecciones.",
     },
     techniques: {
-      title: "Técnicas",
-      newTechnique: "Nueva técnica",
+      title: "Habilidades",
+      newTechnique: "Nueva habilidad",
       colName: "Nombre",
       colCategory: "Categoría",
       colLevel: "Nivel",
@@ -556,9 +556,9 @@ export const strings = {
       allOption: "Todas",
       apply: "Filtrar",
       clear: "Quitar filtros",
-      empty: "Ninguna técnica coincide con esos filtros.",
+      empty: "Ninguna habilidad coincide con esos filtros.",
       form: {
-        createTitle: "Nueva técnica",
+        createTitle: "Nueva habilidad",
         nameLabel: "Nombre",
         slugLabel: "Slug",
         slugHint: "minúsculas-y-guiones; se sugiere desde el nombre",
@@ -567,19 +567,19 @@ export const strings = {
         descriptionLabel: "Descripción (markdown)",
         save: "Guardar",
         saving: "Guardando…",
-        created: "Técnica creada",
+        created: "Habilidad creada",
         saved: "Cambios guardados",
       },
       actions: {
-        deleteTechnique: "Borrar técnica",
-        deleteTitle: "Borrar técnica",
+        deleteTechnique: "Borrar habilidad",
+        deleteTitle: "Borrar habilidad",
         deleteCleanBody: (name: string) =>
           `Vas a borrar «${name}». No hay vuelta atrás.`,
         deleteLinkedBody: (name: string, lessons: number) =>
           `«${name}» está vinculada a ${lessons === 1 ? "1 lección" : `${lessons} lecciones`}; el vínculo se borrará con ella. No hay vuelta atrás.`,
         inUseBody:
-          "Hay alumnos con práctica o dominio registrados en esta técnica: no se puede borrar.",
-        deleted: "Técnica borrada",
+          "Hay alumnos con práctica o dominio registrados en esta habilidad: no se puede borrar.",
+        deleted: "Habilidad borrada",
       },
     },
     quizzes: {
@@ -676,6 +676,6 @@ export const strings = {
     lessonSlugTaken: "Ya existe una lección con ese slug.",
     lessonTypeLocked:
       "No se puede cambiar el tipo: la lección tiene un quiz con preguntas, intentos o entregas asociadas.",
-    techniqueSlugTaken: "Ya existe una técnica con ese slug.",
+    techniqueSlugTaken: "Ya existe una habilidad con ese slug.",
   },
 } as const;
