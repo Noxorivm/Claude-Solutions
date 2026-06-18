@@ -226,7 +226,7 @@ describe("techniqueSchema", () => {
   const VALID_TECHNIQUE = {
     name: "Doble lift",
     slug: "doble-lift",
-    category: "cards" as const,
+    category: "conversation" as const,
     levelNumber: 1,
     descriptionMd: null,
   };

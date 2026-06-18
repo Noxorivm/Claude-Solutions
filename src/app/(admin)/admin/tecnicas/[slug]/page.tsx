@@ -44,11 +44,11 @@ export default async function AdminTecnicaDetailPage({
             name: technique.name,
             slug: technique.slug,
             category: technique.category as
-              | "cards"
-              | "coins"
-              | "mentalism"
-              | "classics"
-              | "stage"
+              | "conversation"
+              | "prompting"
+              | "tools"
+              | "api"
+              | "agents"
               | "theory",
             levelNumber: technique.levelNumber,
             descriptionMd: technique.descriptionMd ?? "",

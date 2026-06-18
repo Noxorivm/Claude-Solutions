@@ -37,11 +37,11 @@ export const videoProvider = pgEnum("video_provider", [
 ]);
 
 export const techniqueCategory = pgEnum("technique_category", [
-  "cards",
-  "coins",
-  "mentalism",
-  "classics",
-  "stage",
+  "conversation",
+  "prompting",
+  "tools",
+  "api",
+  "agents",
   "theory",
 ]);
 

@@ -154,7 +154,7 @@ export const techniqueSchema = z.object({
     .max(200, "El slug no puede pasar de 200 caracteres.")
     .regex(KEBAB, "Usa minúsculas, números y guiones (kebab-case)."),
   category: z.enum(
-    ["cards", "coins", "mentalism", "classics", "stage", "theory"],
+    ["conversation", "prompting", "tools", "api", "agents", "theory"],
     { message: "Categoría no válida." },
   ),
   levelNumber: z

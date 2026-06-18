@@ -204,11 +204,11 @@ export const strings = {
   techniques: {
     title: "Técnicas",
     categories: {
-      cards: "Cartas",
-      coins: "Monedas",
-      mentalism: "Mentalismo",
-      classics: "Clásicos",
-      stage: "Escena",
+      conversation: "Conversación",
+      prompting: "Prompting",
+      tools: "Herramientas",
+      api: "API",
+      agents: "Agentes",
       theory: "Teoría",
     } as Record<string, string>,
     intro: "El catálogo completo. Sé honesto con tu dominio: es tu mapa real.",

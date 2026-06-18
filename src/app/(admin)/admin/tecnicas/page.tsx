@@ -8,11 +8,11 @@ const t = strings.admin.techniques;
 const categoryLabels = strings.techniques.categories;
 
 const CATEGORY_VALUES = [
-  "cards",
-  "coins",
-  "mentalism",
-  "classics",
-  "stage",
+  "conversation",
+  "prompting",
+  "tools",
+  "api",
+  "agents",
   "theory",
 ];
 

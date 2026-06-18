@@ -85,7 +85,17 @@ la plataforma base se conserva más abajo («Roadmap heredado de Cubiletica»).
   Docker (los cubre el CI al pushear).
 - [ ] **CS-T5 Remapeo de conceptos en la app:** adaptar el dominio y el microcopy
   heredados de magia (técnicas → habilidades, "práctica", nombres de rango de
-  jugador, taglines de empty-state) al de Claude, **sin** tocar el esquema.
+  jugador, taglines de empty-state) al de Claude.
+  - [x] **Enum `technique_category` → categorías de Claude (17/06/2026):** de los
+    literales mágicos heredados a las categorías de docs/02 (cards→conversation,
+    coins→prompting, mentalism→tools, classics→api, stage→agents; theory sin
+    cambio). Migración NO destructiva (`ALTER TYPE … RENAME VALUE`, 0003, reescrita
+    a mano sobre el drop/recreate de drizzle-kit); esquema, seed (puente eliminado),
+    validadores, UI y docs/05 sin literales mágicos. Verificado en la BD dev: 41
+    técnicas con categoría válida, 0 nulas; `db:migrate`/`db:seed`×2/`content:apply`
+    OK; lint/typecheck/test (124) + build + e2e en verde.
+  - [ ] Microcopy/terminología de la app (técnicas→habilidades, rangos de jugador,
+    taglines de empty-state), **sin** tocar el esquema.
 - [ ] **CS-T6 Simulador:** diseñar y construir el tipo de lección `simulation`
   (feature nueva específica de Claude Solutions).
 

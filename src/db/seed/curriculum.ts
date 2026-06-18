@@ -422,18 +422,15 @@ export const curriculum: SeedLevel[] = [
 // ────────────────────────────────────────────────────────────────────────────
 // Catálogo de habilidades (docs/02 §12) — seed de la tabla `techniques`.
 //
-// PUENTE DE CATEGORÍA (CS-T3): el enum `technique_category` sigue siendo el
-// heredado (cards|coins|mentalism|classics|stage|theory) y NO se migra aquí (es
-// CS-T5). docs/02 usa conversation|prompting|tools|api|agents|theory. Se mapea
-// 1:1 y posicionalmente, de modo que CS-T5 pueda renombrar los valores del enum
-// (ALTER TYPE … RENAME VALUE) y las filas queden con la categoría correcta sin
-// tocar datos. La tabla `skills` de abajo es la fuente legible (categorías de
-// docs/02); `techniquesSeed` aplica el puente al valor del enum vigente.
+// Las categorías son las de docs/02 (conversation|prompting|tools|api|agents|
+// theory), ya alineadas con el enum `technique_category` tras el renombrado no
+// destructivo de CS-T5 (ALTER TYPE … RENAME VALUE). Ya no hay puente: la
+// categoría de cada técnica se siembra tal cual.
 // ────────────────────────────────────────────────────────────────────────────
 export interface SeedTechnique {
   slug: string;
   name: string;
-  category: "cards" | "coins" | "mentalism" | "classics" | "stage" | "theory";
+  category: "conversation" | "prompting" | "tools" | "api" | "agents" | "theory";
   levelNumber: number;
 }
 
@@ -444,17 +441,6 @@ type SkillCategory =
   | "api"
   | "agents"
   | "theory";
-
-// conversation→cards · prompting→coins · tools→mentalism · api→classics ·
-// agents→stage · theory→theory  (relabel real en CS-T5).
-const CATEGORY_ENUM: Record<string, SeedTechnique["category"]> = {
-  conversation: "cards",
-  prompting: "coins",
-  tools: "mentalism",
-  api: "classics",
-  agents: "stage",
-  theory: "theory",
-};
 
 interface SeedSkill {
   slug: string;
@@ -510,7 +496,7 @@ const skills: SeedSkill[] = [
 export const techniquesSeed: SeedTechnique[] = skills.map((s) => ({
   slug: s.slug,
   name: s.name,
-  category: CATEGORY_ENUM[s.category],
+  category: s.category,
   levelNumber: s.levelNumber,
 }));
 

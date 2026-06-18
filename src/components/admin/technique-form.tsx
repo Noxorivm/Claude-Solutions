@@ -16,11 +16,11 @@ const t = strings.admin.techniques.form;
 const categoryLabels = strings.techniques.categories;
 
 const CATEGORY_VALUES = [
-  "cards",
-  "coins",
-  "mentalism",
-  "classics",
-  "stage",
+  "conversation",
+  "prompting",
+  "tools",
+  "api",
+  "agents",
   "theory",
 ] as const;
 
@@ -49,7 +49,7 @@ export function TechniqueForm({ initial }: { initial?: TechniqueFormValues }) {
     initial ?? {
       name: "",
       slug: "",
-      category: "cards",
+      category: "conversation",
       levelNumber: 0,
       descriptionMd: "",
     },

@@ -8,7 +8,7 @@ Esquema canónico. Implementar con Drizzle (`src/db/schema/*`, un archivo por do
 content_status      : 'draft' | 'published' | 'archived'
 lesson_type         : 'article' | 'video' | 'practice' | 'quiz' | 'milestone'
 video_provider      : 'youtube' | 'vimeo' | 'file'
-technique_category  : 'cards' | 'coins' | 'mentalism' | 'classics' | 'stage' | 'theory'
+technique_category  : 'conversation' | 'prompting' | 'tools' | 'api' | 'agents' | 'theory'
 progress_status     : 'started' | 'completed'
 resource_kind       : 'pdf' | 'image' | 'link' | 'file'
 user_role           : 'student' | 'admin'
